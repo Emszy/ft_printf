@@ -57,10 +57,10 @@ void print_flags(t_flags flags)
 
 }
 
-void check_spec(char * fmt, t_flags flags, va_list ap)
-{
+// void check_spec(char * fmt, t_flags flags, va_list ap)
+// {
 
-}
+// }
 
 int setup(char *fmt, va_list ap)
 {
@@ -78,7 +78,7 @@ int setup(char *fmt, va_list ap)
 			flags = check_mod(fmt, flags);
 			while ((*fmt == 'l' || *fmt == 'h' || *fmt == 'z' || *fmt == 'j') && *fmt)
 				fmt++;
-			check_spec(*fmt, flags, ap);
+			//check_spec(*fmt, flags, ap);
 			print_flags(flags);
 		}
 		fmt++;
