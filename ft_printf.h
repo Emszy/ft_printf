@@ -5,6 +5,7 @@
 # include <wchar.h>
 # include "libft/libft.h"
 
+# define MAX_INT 2147483647
 
 typedef struct s_flags
 {
@@ -54,6 +55,17 @@ t_flags		check_wid(char *fmt, t_flags flags, va_list ap);
 t_flags		check_precis(char *fmt, t_flags flags, va_list ap);
 t_flags		check_flags(char *fmt, t_flags flags, va_list ap);
 t_flags		check_mod(char *fmt, t_flags flags);
+void		prepend_width(t_flags flags, int width);
+void		print_char(va_list ap, t_flags flags);
+void		putwide(wchar_t chr);
+void		chars(va_list ap, t_flags flags, char specifier);
+char		*wide_to_s(wint_t w);
+void		limit_print(char *str, int len);
+void		make_string(char *s, t_flags flags);
+void		l_str(wchar_t *ws, t_flags flags);
+void		str_parse(va_list ap, t_flags flags, char c);
+
+
 
 
 

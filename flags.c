@@ -50,22 +50,39 @@ t_flags		check_precis(char *fmt, t_flags flags, va_list ap)
 t_flags		check_flags(char *fmt, t_flags flags, va_list ap)
 {
 	flags.width = 0;
+	int pass_flags = 0;
 	while (*fmt && !ft_isalpha(*fmt) && *fmt != '%')
 	{
-		if (*fmt == '-')
+		if (pass_flags == 0)
+		{
+			if (*fmt == '-')
+			{
 			flags.neg = 1;
-		else if (*fmt == '+')
-			flags.plus_sign = 1;
-		else if (*fmt == ' ')
-			flags.zero_spacer = 1;
-		else if (*fmt == '#')
-			flags.hash = 1;
-		else if (*fmt == '0')
-			flags.zero_spacer = 1;
-		else if ((ft_isdigit(*fmt) || *fmt == '*') && flags.width == 0)
+			flags.zero_spacer = 0;
+			}
+			else if (*fmt == '+')
+				flags.plus_sign = 1;
+			else if (*fmt == ' ')
+				flags.zero_spacer = 1;
+			else if (*fmt == '#')
+				flags.hash = 1;
+			else if (*fmt == '0')
+			{
+				if (flags.neg == 0)
+					flags.zero_spacer = 1;
+			}
+		}
+		if ((ft_isdigit(*fmt) || *fmt == '*') && flags.width == 0)
+		{
 			flags = check_wid(fmt, flags, ap);
+			pass_flags = 1;
+		}
 		if (*fmt == '.')
+		{
 			flags = check_precis(fmt, flags, ap);
+			return(flags);
+		}
+			
 			fmt++;
 	}
 	return (flags);

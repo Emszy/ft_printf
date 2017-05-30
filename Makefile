@@ -4,11 +4,15 @@ FLAGS = -Wall -Wextra -Werror
 
 SRC =	\
 		ft_printf.c \
-		flags.c
+		flags.c \
+		characters.c \
+		strings.c
 
 INPUT_OBJ =	\
 		ft_printf.o \
-		flags.o
+		flags.o \
+		characters.o \
+		strings.o
 		
 OBJ = $(patsubst %.c,%.o,$(addprefix ./, $(SRC)))
 
