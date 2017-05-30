@@ -4,7 +4,7 @@
 
 void print_flags(t_flags flags)
 {
-		ft_putstr("\n");
+	ft_putstr("\n");
 	ft_putstr("hash:");
 	ft_putnbr(flags.hash);
 	ft_putstr("\n");
@@ -84,6 +84,8 @@ void check_spec(char *fmt, t_flags flags, va_list ap)
 	 	str_parse(ap, flags, *fmt);
 	if (*fmt == 'i' || *fmt == 'd' || *fmt == 'D')
 		num_parse(ap, flags, fmt);
+	if (*fmt == 'u' || *fmt == 'U')
+		unum_parse(ap, flags, fmt);
 }
 
 int setup(char *fmt, va_list ap)
@@ -103,8 +105,10 @@ int setup(char *fmt, va_list ap)
 			while ((*fmt == 'l' || *fmt == 'h' || *fmt == 'z' || *fmt == 'j') && *fmt)
 				fmt++;
 			check_spec(fmt, flags, ap);
-			print_flags(flags);
+			//print_flags(flags);
 		}
+		else
+			ft_putchar(*fmt);
 		fmt++;
 	}
 	return (1);
@@ -121,6 +125,6 @@ int	 ft_printf(char *fmt, ...)
 
 int main()
 {
-  ft_printf("%020d", 8437);
+  ft_printf("%030U intbetween %s aksd", 8437, "thisnext");
    return 0;
 }

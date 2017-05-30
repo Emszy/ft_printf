@@ -70,6 +70,9 @@ void		number_print(char *str, t_flags flags);
 void		num_to_s(uintmax_t number, t_flags flags, char before);
 intmax_t 	promo_check(va_list ap, t_flags flags, char *fmt);
 void		num_parse(va_list ap, t_flags flags, char *fmt);
+void		u_to_s(uintmax_t num, t_flags flags);
+uintmax_t 	promoting_u(va_list ap, t_flags flags, char *fmt);
+void		unum_parse(va_list ap, t_flags flags, char *fmt);
 
 
 

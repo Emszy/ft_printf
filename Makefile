@@ -6,13 +6,15 @@ SRC =	\
 		ft_printf.c \
 		flags.c \
 		characters.c \
-		strings.c
+		strings.c \
+		num.c \
 
 INPUT_OBJ =	\
 		ft_printf.o \
 		flags.o \
 		characters.o \
-		strings.o
+		strings.o \
+		num.o \
 		
 OBJ = $(patsubst %.c,%.o,$(addprefix ./, $(SRC)))
 

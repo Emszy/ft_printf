@@ -12,17 +12,17 @@ int		get_size(uintmax_t num, int base)
 
 void	number_print(char *str, t_flags flags)
 {
-	int size;
+	int len;
 
-	size = ft_strlen(str);
+	len = ft_strlen(str);
 	if (flags.neg)
 	{
 		ft_putstr(str);
-		prepend_width(flags, flags.width - size);
+		prepend_width(flags, flags.width - len);
 	}
 	else
 	{
-		prepend_width(flags, flags.width - size);
+		prepend_width(flags, flags.width - len);
 		ft_putstr(str);
 	}
 }
