@@ -35,7 +35,7 @@ void		limit_print(char *str, int len)
 	x = -1;
 	while (*str && ++x < len)
 	{
-		ft_putchar(*s);
+		ft_putchar(*str);
 		str++;
 	}
 }
