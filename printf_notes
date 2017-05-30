@@ -1,0 +1,98 @@
+
+"%[flags][width][.precision][length]type", 
+
+
+Conversions:
+
+ s = putstr;
+
+ S = wide char
+
+ p = "void * (pointer to void) in an implementation-defined format."
+
+ d = "Handles int"
+
+ D =  "handles int"
+
+ i = "Handles int"
+
+ o = "Unsigned Int in Octal"
+
+ O = Unsigned int in octal
+
+ u = "Print Decimal (Unsigned int)"
+
+ U = "unsigned int "
+
+ x = "unsigned int as a hexadecimal number. x uses lower-case letters and ."
+
+ X = "unsigned int as a hexadecimal number. X uses upper-case"
+
+ c = "char"
+
+ C = "Handles Wide Character type: int or wint_t"
+ 
+	int f; 	//contain decimal
+	int F; 	// contain decimal
+	int o; 	//  0
+	int x;	//  0x
+ 	int X; 	//  0X
+
+ hh = "For integer types, causes printf to expect an int-sized integer argument which was promoted from a char."
+
+h = "For integer types, causes printf to expect an int-sized integer argument which was promoted from a short."
+
+l = "For integer types, causes printf to expect a long-sized integer argument.
+	 For floating point types, causes printf to expect a double argument."
+
+ll = For integer types, causes printf to expect a long long-sized integer argument.
+
+j = For integer types, causes printf to expect a intmax_t-sized integer argument.
+
+z = A following integer conversion corresponds to a size_t or
+              ssize_t argument, or a following n conversion corresponds to a
+              pointer to a size_t argument.
+
+
+
+Manage
+ %% = prints '%'
+
+min_fieldwidth = min char to be printed 
+
+Precision:
+
+Float Precision: 
+	%8.2f
+This says you require a total field of 8 characters, within the 8 characters the last 2 will hold the decimal part.
+	%.2f
+The example above requests the minimum field width and the last two characters are to hold the decimal part.
+
+
+String Precision:
+
+The precision within a string format specifies the maximum field width.
+	%4.8s
+Specifies a minimum width of 4 and a maximum width of 8 characters. If the string is greater than 8 characters, it will be cropped down to size.
+
+
+ Flags:
+
+# = "Alternate form:
+	For f, F, types, the output always contains a decimal point.
+	For o, x, X types, the text , 0x, 0X, respectively, is prepended to non-zero numbers."
+
+0 = "When the 'width' option is specified, prepends zeros for numeric types. (the default prepends spaces).
+	 For example, printf("%2X",3) produces  3, while printf("%02X",3) produces in 03."
+
+- = "Left-align the output of this placeholder. (the default is to right-align the output.)"
+
+
+//////For INT
+
++ = "Prepends a plus for positive signed-numeric types. positive = +, negative = -."
+
+space = "Prepends a space for positive signed-numeric types. positive = , negative = -. This flag is ignored if the + flag exists.
+		(the default doesn't prepend anything in front of positive numbers)."
+
+
