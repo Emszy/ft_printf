@@ -71,7 +71,7 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 		else
 			nbr[0] = before;
 	}
-	if (flags.precision < flags.width)
+	if (flags.precision < flags.width && flags.precision != 0)
 	{
 		flags.width = flags.width - flags.precision;
 		while (flags.precision)
