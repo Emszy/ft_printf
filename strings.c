@@ -105,7 +105,7 @@ void		str_parse(va_list ap, t_flags flags, char c)
 	wchar_t	*ws;
 
 	s = '\0';
-	if (c == 'S' || (flags.l_mod && c == 's'))
+	if (c == 'S' || (flags.l && c == 's'))
 	{
 		ws = va_arg(ap, wchar_t *);
 		if (ws)
