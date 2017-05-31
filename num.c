@@ -62,7 +62,10 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 		number /= 10;
 	}
 	if (before != 0)
-		nbr[0] = before;
+	{
+		ft_putchar(before);
+		width--;
+	}
 	number_print(nbr, flags);
 }
 
