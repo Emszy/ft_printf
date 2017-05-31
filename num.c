@@ -63,7 +63,7 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 	}
 	if (before != 0)
 	{
-		if (before == '+' && zero_spacer)
+		if (before == '+' && flags.zero_spacer)
 		{
 			ft_putchar(before);
 			width--;
