@@ -101,8 +101,11 @@ void		num_parse(va_list ap, t_flags flags, char *fmt)
 		before = 0;
 	if (flags.space && !flags.plus_sign)
 		before = ' ';
-	if (number < 0 && number * -1 > 0)
+	if (number < 0)
+	{
+		number *= -1;
 		before = '-';
+	}
 	if (number == 0 && !flags.width && flags.precision)
 		return ;
 	if (number == 0 && flags.precision)

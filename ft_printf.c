@@ -86,3 +86,9 @@ int			ft_printf(char *fmt, ...)
 	va_end(ap);
 	return (0);
 }
+
+int main(void)
+{
+	ft_printf("42Kashim a 1001 histoires à raconterIl fait au moins %i", -8000);
+	return 0;
+}

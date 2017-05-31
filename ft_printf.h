@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include <wchar.h>
 # include "libft/libft.h"
-# define MAX_INT 2147483647
 
 typedef struct		s_flags
 {

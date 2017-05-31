@@ -85,12 +85,13 @@ LIBS = libft/libft.a
 
 .PHONY: all clean fclean re
 
-.PHONY: all clean fclean re
-
 all: $(NAME)
 
 $(OBJS):
 		gcc $(CFLAG) $(SRCS)
+fast:
+	gcc -Wall -Werror -Wextra $(SRCS) $(LIB_OBJS)
+	rm -f $(OBJS)
 
 $(LIB_OBJS):
 		$(MAKE) -C ./libft
