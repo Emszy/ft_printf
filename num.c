@@ -66,7 +66,7 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 		if (before == '+' && flags.zero_spacer)
 		{
 			ft_putchar(before);
-			width--;
+			flags.width--;
 		}
 		else
 			nbr[0] = before;
