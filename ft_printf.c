@@ -86,3 +86,8 @@ int			ft_printf(char *fmt, ...)
 	va_end(ap);
 	return (0);
 }
+
+int			main(void)
+{
+	return (0);
+}
