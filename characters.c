@@ -18,7 +18,7 @@ void	prepend_width(t_flags flags, int width)
 	char	spaces;
 
 	x = -1;
-	if (flags.spaces == 1)
+	if (flags.space == 1)
 		spaces = ' ';
 	else
 		spaces = '0';
