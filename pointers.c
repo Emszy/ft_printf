@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pointers.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/30 18:53:15 by ebucheit          #+#    #+#             */
+/*   Updated: 2017/05/30 18:53:15 by ebucheit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-char	*cp_pointer(long n, int len)
+char		*cp_pointer(long n, int len)
 {
 	char	*new;
 
@@ -22,8 +34,8 @@ char	*cp_pointer(long n, int len)
 	new[1] = 'x';
 	new[0] = '0';
 	return (new);
-
 }
+
 void		p_to_s(void *pointer, t_flags flags)
 {
 	long	n;

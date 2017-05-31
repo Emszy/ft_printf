@@ -1,21 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flags.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/30 18:53:15 by ebucheit          #+#    #+#             */
+/*   Updated: 2017/05/30 18:53:15 by ebucheit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-t_flags init_flags(t_flags flags)
-{
-	flags.hash = 0;
-	flags.neg = 0;
-	flags.plus_sign = 0;
-	flags.space = 0;
-	flags.zero_spacer = 0;
-	flags.modula = 0;
-	flags.precision = 0;
-	flags.h = 0;
-	flags.hh = 0;
-	flags.l = 0;
-	flags.ll = 0;
-	flags.j = 0;
-	flags.z = 0;
-	return (flags);
-}
 
 t_flags		check_wid(char *fmt, t_flags flags, va_list ap)
 {
@@ -29,7 +24,6 @@ t_flags		check_wid(char *fmt, t_flags flags, va_list ap)
 	}
 	if (flags.precision < 0)
 		flags.precision = 0;
-
 	return (flags);
 }
 
@@ -47,31 +41,37 @@ t_flags		check_precis(char *fmt, t_flags flags, va_list ap)
 	return (flags);
 }
 
+t_flags		first_flags(char *fmt, t_flags flags)
+{
+	if (*fmt == '-')
+	{
+		flags.neg = 1;
+		flags.zero_spacer = 0;
+	}
+	else if (*fmt == '+')
+		flags.plus_sign = 1;
+	else if (*fmt == ' ')
+		flags.zero_spacer = 1;
+	else if (*fmt == '#')
+		flags.hash = 1;
+	else if (*fmt == '0')
+	{
+		if (flags.neg == 0)
+			flags.zero_spacer = 1;
+	}
+	return (flags);
+}
+
 t_flags		check_flags(char *fmt, t_flags flags, va_list ap)
 {
+	int pass_flags;
+
 	flags.width = 0;
-	int pass_flags = 0;
+	pass_flags = 0;
 	while (*fmt && !ft_isalpha(*fmt) && *fmt != '%')
 	{
 		if (pass_flags == 0)
-		{
-			if (*fmt == '-')
-			{
-			flags.neg = 1;
-			flags.zero_spacer = 0;
-			}
-			else if (*fmt == '+')
-				flags.plus_sign = 1;
-			else if (*fmt == ' ')
-				flags.zero_spacer = 1;
-			else if (*fmt == '#')
-				flags.hash = 1;
-			else if (*fmt == '0')
-			{
-				if (flags.neg == 0)
-					flags.zero_spacer = 1;
-			}
-		}
+			flags = first_flags(fmt, flags);
 		if ((ft_isdigit(*fmt) || *fmt == '*') && flags.width == 0)
 		{
 			flags = check_wid(fmt, flags, ap);
@@ -80,15 +80,14 @@ t_flags		check_flags(char *fmt, t_flags flags, va_list ap)
 		if (*fmt == '.')
 		{
 			flags = check_precis(fmt, flags, ap);
-			return(flags);
+			return (flags);
 		}
-			
-			fmt++;
+		fmt++;
 	}
 	return (flags);
 }
 
-t_flags	check_mod(char *fmt, t_flags flags)
+t_flags		check_mod(char *fmt, t_flags flags)
 {
 	if (*fmt == 'h' && *fmt + 1 && *fmt + 1 != 'h')
 		flags.h = 1;

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   num.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/30 18:53:15 by ebucheit          #+#    #+#             */
+/*   Updated: 2017/05/30 18:53:15 by ebucheit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int		get_size(uintmax_t num, int base)
+int			get_size(uintmax_t num, int base)
 {
 	int len;
 
@@ -10,7 +22,7 @@ int		get_size(uintmax_t num, int base)
 	return (len);
 }
 
-void	number_print(char *str, t_flags flags)
+void		number_print(char *str, t_flags flags)
 {
 	int len;
 
@@ -27,7 +39,7 @@ void	number_print(char *str, t_flags flags)
 	}
 }
 
-void	num_to_s(uintmax_t number, t_flags flags, char before)
+void		num_to_s(uintmax_t number, t_flags flags, char before)
 {
 	int		len;
 	char	*nbr;
@@ -49,17 +61,17 @@ void	num_to_s(uintmax_t number, t_flags flags, char before)
 			nbr[len] = '0';
 		number /= 10;
 	}
-	if (before != 0 && flags.zero_spacer && flags.width  - 1)
+	if (before != 0 && flags.zero_spacer && flags.width - 1)
 		ft_putchar(before);
 	else if (before != 0)
 		nbr[0] = before;
 	number_print(nbr, flags);
 }
 
-intmax_t promo_check(va_list ap, t_flags flags, char *fmt)
+intmax_t	promo_check(va_list ap, t_flags flags, char *fmt)
 {
-
 	intmax_t	res;
+
 	if (*fmt == 'D' || flags.l)
 		res = va_arg(ap, long);
 	else if (flags.h)

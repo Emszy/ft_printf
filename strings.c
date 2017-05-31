@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strings.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/30 18:53:15 by ebucheit          #+#    #+#             */
+/*   Updated: 2017/05/30 18:53:15 by ebucheit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-char	*wide_to_s(wint_t w)
+char		*wide_to_s(wint_t w)
 {
 	char *ws;
 
@@ -57,14 +69,14 @@ void		make_string(char *s, t_flags flags)
 			limit_print(s, flags.precision);
 	}
 	if (flags.width > size)
-			prepend_width(flags, flags.width - size);
+		prepend_width(flags, flags.width - size);
 	if (flags.precision == 0 && !flags.neg)
 		ft_putstr(s);
 	else if (flags.precision > 0 && !flags.neg)
 		limit_print(s, flags.precision);
 }
 
-void	l_str(wchar_t *ws, t_flags flags)
+void		l_str(wchar_t *ws, t_flags flags)
 {
 	int		total;
 	int		len;
@@ -81,7 +93,7 @@ void	l_str(wchar_t *ws, t_flags flags)
 	{
 		total += ft_strlen(str = wide_to_s(*ws++));
 		if (total <= len)
-			new = ft_strjoin(new, str); // remalloc if segfault
+			new = ft_strjoin(new, str);
 	}
 	make_string(new, flags);
 	ft_strdel(&new);

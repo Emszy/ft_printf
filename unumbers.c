@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unumbers.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/30 18:53:15 by ebucheit          #+#    #+#             */
+/*   Updated: 2017/05/30 18:53:15 by ebucheit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	u_to_s(uintmax_t num, t_flags flags)
+void		u_to_s(uintmax_t num, t_flags flags)
 {
 	int		size;
 	char	*n;
@@ -18,11 +30,10 @@ void	u_to_s(uintmax_t num, t_flags flags)
 			n[size] = '0';
 		num /= 10;
 	}
-
 	number_print(n, flags);
 }
 
-uintmax_t promoting_u(va_list ap, t_flags flags, char *fmt)
+uintmax_t	promoting_u(va_list ap, t_flags flags, char *fmt)
 {
 	uintmax_t	res;
 
@@ -43,7 +54,7 @@ uintmax_t promoting_u(va_list ap, t_flags flags, char *fmt)
 	return (res);
 }
 
-void	unum_parse(va_list ap, t_flags flags, char *fmt)
+void		unum_parse(va_list ap, t_flags flags, char *fmt)
 {
 	uintmax_t	res;
 

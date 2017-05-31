@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   onumbers.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/30 18:53:15 by ebucheit          #+#    #+#             */
+/*   Updated: 2017/05/30 18:53:15 by ebucheit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	o_to_s(uintmax_t num, t_flags flags)
+void		o_to_s(uintmax_t num, t_flags flags)
 {
 	int		len;
 	char	*n;
@@ -21,7 +33,7 @@ void	o_to_s(uintmax_t num, t_flags flags)
 	number_print(n, flags);
 }
 
-uintmax_t promoting_o(va_list ap, t_flags flags, char *fmt)
+uintmax_t	promoting_o(va_list ap, t_flags flags, char *fmt)
 {
 	uintmax_t	res;
 
@@ -29,10 +41,10 @@ uintmax_t promoting_o(va_list ap, t_flags flags, char *fmt)
 		res = (unsigned char)va_arg(ap, int);
 	else if (*fmt == 'o' && flags.h)
 		res = (unsigned short)va_arg(ap, int);
-	else if ((*fmt == 'o' && flags.l) || *fmt == 'O')
-		res = va_arg(ap, unsigned long);
 	else if (*fmt == 'o' && flags.ll)
 		res = va_arg(ap, unsigned long long);
+	else if ((*fmt == 'o' && flags.l) || *fmt == 'O')
+		res = va_arg(ap, unsigned long);
 	else if (*fmt == 'o' && flags.j)
 		res = va_arg(ap, uintmax_t);
 	else if (*fmt == 'o' && flags.z)
@@ -42,7 +54,7 @@ uintmax_t promoting_o(va_list ap, t_flags flags, char *fmt)
 	return (res);
 }
 
-void	onum_parse(va_list ap, t_flags flags, char *fmt)
+void		onum_parse(va_list ap, t_flags flags, char *fmt)
 {
 	uintmax_t	res;
 

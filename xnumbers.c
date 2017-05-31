@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   xnumbers.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/30 18:53:15 by ebucheit          #+#    #+#             */
+/*   Updated: 2017/05/30 18:53:15 by ebucheit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void x_mod(t_flags flags, char *fmt, char *new)
+void		x_mod(t_flags flags, char *fmt, char *new)
 {
 	int size;
 
 	size = 0;
- 	if (flags.hash && !flags.zero_spacer)
+	if (flags.hash && !flags.zero_spacer)
 	{
 		new[1] = 'x';
 		new[0] = '0';
@@ -29,8 +41,7 @@ void x_mod(t_flags flags, char *fmt, char *new)
 	number_print(new, flags);
 }
 
-
-void	x_to_s(uintmax_t n, t_flags flags, char *fmt, int size)
+void		x_to_s(uintmax_t n, t_flags flags, char *fmt, int size)
 {
 	char	*new;
 
@@ -59,7 +70,7 @@ void	x_to_s(uintmax_t n, t_flags flags, char *fmt, int size)
 	x_mod(flags, fmt, new);
 }
 
-uintmax_t promoting_x(va_list ap, t_flags flags)
+uintmax_t	promoting_x(va_list ap, t_flags flags)
 {
 	uintmax_t	res;
 
@@ -85,7 +96,6 @@ void		xnum_parse(va_list ap, t_flags flags, char *fmt)
 	uintmax_t	res;
 
 	res = promoting_x(ap, flags);
-
 	if (res == 0 && !flags.width && flags.precision)
 		return ;
 	if (res == 0 && flags.precision)

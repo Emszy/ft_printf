@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   characters.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/30 18:53:15 by ebucheit          #+#    #+#             */
+/*   Updated: 2017/05/30 18:53:15 by ebucheit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-
-void prepend_width(t_flags flags, int width)
+void	prepend_width(t_flags flags, int width)
 {
-	int x;
-	char spaces;
+	int		x;
+	char	spaces;
 
 	x = -1;
-	if(flags.zero_spacer == 1)
+	if (flags.zero_spacer == 1)
 		spaces = '0';
 	else
 		spaces = ' ';
@@ -15,7 +26,7 @@ void prepend_width(t_flags flags, int width)
 		ft_putchar(spaces);
 }
 
-void print_char(va_list ap, t_flags flags)
+void	print_char(va_list ap, t_flags flags)
 {
 	char c;
 
@@ -48,7 +59,7 @@ void	putwide(wchar_t chr)
 	}
 }
 
-void chars(va_list ap, t_flags flags, char specifier)
+void	chars(va_list ap, t_flags flags, char specifier)
 {
 	if (specifier == 'c' && flags.l == 0)
 		print_char(ap, flags);
