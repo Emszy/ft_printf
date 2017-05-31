@@ -61,8 +61,8 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 			nbr[len] = '0';
 		number /= 10;
 	}
-	// if (before != 0 && flags.zero_spacer && flags.width - 1)
-	// 	ft_putchar(before);
+	if (before != 0 && flags.zero_spacer && flags.width - 1)
+		ft_putchar(before);
 	if (before != 0)
 		nbr[0] = before;
 	number_print(nbr, flags);
@@ -94,10 +94,11 @@ void		num_parse(va_list ap, t_flags flags, char *fmt)
 	intmax_t	number;
 	char		before;
 
-	before = 0;
 	number = promo_check(ap, flags, fmt);
 	if (flags.plus_sign != 0)
 		before = '+';
+	else
+		before = 0;
 	if (flags.space && !flags.plus_sign)
 		before = ' ';
 	if (number < 0)
