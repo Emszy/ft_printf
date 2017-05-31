@@ -65,6 +65,11 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 		ft_putchar(before);
 	if (before != 0)
 		nbr[0] = before;
+	ft_putchar('\n');
+	ft_putchar('\n');
+	ft_putnbr(flags.plus_sign);
+	ft_putchar('\n');
+	ft_putchar('\n');
 	number_print(nbr, flags);
 }
 
