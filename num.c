@@ -61,11 +61,9 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 			nbr[len] = '0';
 		number /= 10;
 	}
-	if (before != 0)
-	{
-		ft_putchar(before);
-		flags.width--;
-	}
+	if (before != 0 && before != '+')
+		nbr[0] = before;
+	if (flags.zero_spacer > 0 && before == '+')
 	number_print(nbr, flags);
 }
 
