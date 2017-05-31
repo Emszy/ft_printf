@@ -41,7 +41,7 @@ void	spaces(int n, t_flags *flags, int c)
 	}
 }
 
-void	number_print2(char *str, t_flags *flags)
+void	number_print2(char *str, t_flags flags)
 {
 	int size;
 
@@ -53,7 +53,7 @@ void	number_print2(char *str, t_flags *flags)
 	}
 	else
 	{
-		if (flags->zero)
+		if (flags->zero_spacer)
 			spaces(flags->width - size, flags, 1);
 		else
 			spaces(flags->width - size, flags, 0);
