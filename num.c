@@ -22,46 +22,6 @@ int			get_size(uintmax_t num, int base)
 	return (len);
 }
 
-void	spaces(int n, t_flags flags, int c)
-{
-	int i;
-
-	i = 0;
-	if (c)
-		c = '0';
-	else
-		c = ' ';
-	if (n > 0)
-	{
-		while (i < n)
-		{
-			ft_putchar(c);
-			i++;
-		}
-	}
-}
-
-void	number_print2(char *str, t_flags flags)
-{
-	int size;
-
-	size = ft_strlen(str);
-	if (flags.neg)
-	{
-		ft_putstr(str);
-		spaces(flags.width - size, flags, 0);
-	}
-	else
-	{
-		if (flags.zero_spacer)
-			spaces(flags.width - size, flags, 1);
-		else
-			spaces(flags.width - size, flags, 0);
-		ft_putstr(str);
-	}
-	ft_strdel(&str);
-}
-
 void		number_print(char *str, t_flags flags)
 {
 	int len;
@@ -105,7 +65,7 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 		ft_putchar(before);
 	if (before != 0)
 		nbr[0] = before;
-	number_print2(nbr, flags);
+	number_print(nbr, flags);
 }
 
 intmax_t	promo_check(va_list ap, t_flags flags, char *fmt)
