@@ -89,5 +89,6 @@ int			ft_printf(char *fmt, ...)
 
 int			main(void)
 {
+
 	return (0);
 }
