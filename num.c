@@ -95,20 +95,13 @@ void		num_parse(va_list ap, t_flags flags, char *fmt)
 	char		before;
 
 	number = promo_check(ap, flags, fmt);
-	if (flags.plus_sign != 0)
-		before = '+';
-	else
-		before = 0;
-	if (flags.space && !flags.plus_sign)
-		before = ' ';
-	if (number < 0)
-	{
-		number *= -1;
-		before = '-';
-	}
-	if (number == 0 && !flags.width && flags.precision)
+	before = (flags->pos_sign) ? '+' : 0;
+	before = (flags->space && (!flags->pos_sign)) ? ' ' : before;
+	before = ((num < 0) && (num *= -1)) ? '-' : before;
+	if (num == 0 && !flags->width && flags->precision && !flags->pre_amount)
 		return ;
-	if (number == 0 && flags.precision)
-		ft_putchar(' ');
+	if (num == 0 && flags->precision && !flags->pre_amount)
+		return (char_print(' ', flags));
+
 	num_to_s((uintmax_t)number, flags, before);
 }
