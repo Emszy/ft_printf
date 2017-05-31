@@ -18,10 +18,10 @@ void	prepend_width(t_flags flags, int width)
 	char	spaces;
 
 	x = -1;
-	if (flags.zero_spacer == 1)
-		spaces = '0';
-	else
+	if (flags.spaces == 1)
 		spaces = ' ';
+	else
+		spaces = '0';
 	while (++x < width)
 		ft_putchar(spaces);
 }
