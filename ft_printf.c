@@ -86,13 +86,3 @@ int			ft_printf(char *fmt, ...)
 	va_end(ap);
 	return (0);
 }
-
-int			main(void)
-{
-	void *p;
-
-	p = "this";
-	ft_printf("%p intbetween %30s aksd\n", p, "ç");
-	printf("%p intbetween %s aksd\n", p, "ç");
-	return (0);
-}
