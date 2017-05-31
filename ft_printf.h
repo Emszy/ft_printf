@@ -38,8 +38,7 @@ typedef struct		s_flags
 t_flags				init_flags(t_flags flags);
 t_flags				check_wid(char *fmt, t_flags flags, va_list ap);
 t_flags				check_precis(char *fmt, t_flags flags, va_list ap);
-t_flags				check_flags(char *fmt, t_flags flags, va_list ap)
-
+t_flags				check_flags(char *fmt, t_flags flags, va_list ap);
 t_flags				check_mod(char *fmt, t_flags flags);
 void				prepend_width(t_flags flags, int width);
 void				print_char(va_list ap, t_flags flags);

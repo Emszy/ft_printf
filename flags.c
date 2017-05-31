@@ -12,62 +12,80 @@
 
 #include "ft_printf.h"
 
-static void	set_width(char **fmt, t_flags flags, va_list ap)
+t_flags		check_wid(char *fmt, t_flags flags, va_list ap)
 {
-	flags.width = ft_atoi(*fmt);
-	while (ft_isdigit(**fmt))
-		*fmt += 1;
-	if (**fmt == '*')
+	flags.width = ft_atoi(fmt);
+	while (ft_isdigit(*fmt))
+		fmt++;
+	if (*fmt == '*')
 	{
 		flags.width = va_arg(ap, int);
-		*fmt += 1;
-	}
-	if (flags.width < 0)
-	{
-		flags.neg = 1;
-		flags.width *= -1;
-	}
-}
-
-static void	set_precision(char **fmt, t_flags flags, va_list ap)
-{
-	*fmt += 1;
-	flags.precision = 1;
-	flags.precision = ft_atoi(*fmt);
-	while (ft_isdigit(**fmt))
-		*fmt += 1;
-	if (**fmt == '*')
-	{
-		flags.precision = va_arg(ap, int);
-		*fmt += 1;
+		fmt++;
 	}
 	if (flags.precision < 0)
 		flags.precision = 0;
+	return (flags);
 }
 
-void		check_flags(char *fmt, t_flags flags, va_list ap)
+t_flags		check_precis(char *fmt, t_flags flags, va_list ap)
 {
+	fmt++;
+	flags.precision = ft_atoi(fmt);
+	while (ft_isdigit(*fmt))
+		fmt++;
+	if (*fmt == '*')
+	{
+		flags.precision = va_arg(ap, int);
+		fmt++;
+	}
+	return (flags);
+}
+
+t_flags		first_flags(char *fmt, t_flags flags)
+{
+	if (*fmt == '-')
+	{
+		flags.neg = 1;
+		flags.zero_spacer = 0;
+	}
+	else if (*fmt == '+')
+		flags.plus_sign = 1;
+	else if (*fmt == ' ')
+		flags.zero_spacer = 1;
+	else if (*fmt == '#')
+		flags.hash = 1;
+	else if (*fmt == '0')
+	{
+		if (flags.neg == 0)
+			flags.zero_spacer = 1;
+	}
+	return (flags);
+}
+
+t_flags		check_flags(char *fmt, t_flags flags, va_list ap)
+{
+	int pass_flags;
+
+	flags.width = 0;
+	pass_flags = 0;
 	while (*fmt && !ft_isalpha(*fmt) && *fmt != '%')
 	{
-		if (*fmt == '-')
-			flags.neg = 1;
-		else if (*fmt == '+')
-			flags.plus_sign = 1;
-		else if (*fmt == ' ')
-			flags.space = 1;
-		else if (*fmt == '#')
-			flags.hash = 1;
-		else if (*fmt == '0')
-			flags.zero_spacer = 1;
-		else if (ft_isdigit(*fmt) || *fmt == '*')
-			set_width(&fmt, flags, ap);
+		if (pass_flags == 0)
+			flags = first_flags(fmt, flags);
+		if ((ft_isdigit(*fmt) || *fmt == '*') && flags.width == 0)
+		{
+			flags = check_wid(fmt, flags, ap);
+			pass_flags = 1;
+		}
 		if (*fmt == '.')
-			set_precision(&fmt, flags, ap);
-		if (*fmt && !ft_isalpha(*fmt))
-			fmt++;
+		{
+			flags = check_precis(fmt, flags, ap);
+			return (flags);
+		}
+		fmt++;
 	}
+	return (flags);
 }
-
 
 t_flags		check_mod(char *fmt, t_flags flags)
 {
