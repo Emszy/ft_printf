@@ -10,7 +10,8 @@ SRC =	\
 		num.c \
 		unumbers.c \
 		xnumbers.c \
-		onumbers.c
+		onumbers.c \
+		pointers.c
 
 INPUT_OBJ =	\
 		ft_printf.o \
@@ -20,7 +21,8 @@ INPUT_OBJ =	\
 		num.o \
 		unumbers.o \
 		xnumbers.o \
-		onumbers.o
+		onumbers.o \
+		pointers.o
 		
 OBJ = $(patsubst %.c,%.o,$(addprefix ./, $(SRC)))
 

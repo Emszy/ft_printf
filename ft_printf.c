@@ -1,7 +1,7 @@
 #include <stdarg.h> 
 #include <stdio.h>
 #include "ft_printf.h"
-
+/*
 void print_flags(t_flags flags)
 {
 	ft_putstr("\n");
@@ -53,42 +53,7 @@ void print_flags(t_flags flags)
 	ft_putstr("\n");
 	ft_putstr("\n");
 }
-
-void		p_to_s(void *pointer, t_flags flags)
-{
-	long	n;
-	int		len;
-	char	*new;
-
-	n = (long)pointer;
-	if (n == 0 && flags.precision)
-	{
-		number_print("0x", flags);
-		return ;
-	}
-	len = get_size(n, 16) + 2;
-	if (flags.precision > len - 2)
-		len = flags.precision + 2;
-	new = ft_strnew(len);
-	new[len] = '\0';
-	while (--len >= 0)
-	{
-		if (n != 0)
-		{
-			if ((n % 16) > 9)
-				new[len] = (n % 16) - 10 + 'a';
-			else
-				new[len] = (n % 16) + '0';
-		}
-		else
-			new[len] = '0';
-		n /= 16;
-	}
-	new[1] = 'x';
-	new[0] = '0';
-	number_print(new, flags);
-}
-
+*/
 
 void check_spec(char *fmt, t_flags flags, va_list ap)
 {
@@ -128,7 +93,6 @@ int setup(char *fmt, va_list ap)
 			while ((*fmt == 'l' || *fmt == 'h' || *fmt == 'z' || *fmt == 'j') && *fmt)
 				fmt++;
 			check_spec(fmt, flags, ap);
-			//print_flags(flags);
 		}
 		else
 			ft_putchar(*fmt);
