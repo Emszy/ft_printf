@@ -59,7 +59,7 @@ void		onum_parse(va_list ap, t_flags flags, char *fmt)
 	uintmax_t	res;
 
 	res = promoting_o(ap, flags, fmt);
-	if (flags.hash && res != 0)
+	if (flags.hash && res == 0)
 	{
 		prepend_width(flags, flags.width);
 		ft_putchar('0');
