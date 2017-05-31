@@ -109,7 +109,7 @@ void		str_parse(va_list ap, t_flags flags, char c)
 	{
 		ws = va_arg(ap, wchar_t *);
 		if (ws)
-			long_string(ws, flags);
+			l_str(ws, flags);
 		else
 			make_string("(null)", flags);
 	}
