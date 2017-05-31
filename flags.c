@@ -24,7 +24,7 @@ static void	set_width(char **fmt, t_flags flags, va_list ap)
 	}
 	if (flags.width < 0)
 	{
-		flags.neg_sign = 1;
+		flags.neg = 1;
 		flags.width *= -1;
 	}
 }
