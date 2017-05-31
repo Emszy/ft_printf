@@ -101,7 +101,7 @@ void		num_parse(va_list ap, t_flags flags, char *fmt)
 	if (number == 0 && !flags.width && flags.precision && !flags.pre_amount)
 		return ;
 	if (number == 0 && flags.precision && !flags.pre_amount)
-		return (char_print(' ', flags));
+		return (ft_putchar(' '));
 
 	num_to_s((uintmax_t)number, flags, before);
 }
