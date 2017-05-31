@@ -64,7 +64,7 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 	if (before != 0)
 	{
 		ft_putchar(before);
-		width--;
+		flags.width--;
 	}
 	number_print(nbr, flags);
 }
