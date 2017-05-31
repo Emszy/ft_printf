@@ -30,6 +30,11 @@ void		o_to_s(uintmax_t num, t_flags flags)
 			n[len] = '0';
 		num /= 8;
 	}
+	if (flags.hash && flags.zero_spacer)
+	{
+		ft_putstr("0");
+		flags.width -= 1;
+	}
 	number_print(n, flags);
 }
 
@@ -61,7 +66,6 @@ void		onum_parse(va_list ap, t_flags flags, char *fmt)
 	res = promoting_o(ap, flags, fmt);
 	if (flags.hash && res == 0)
 	{
-		ft_putchar('0');
 		prepend_width(flags, flags.width);
 		ft_putchar('0');
 		return ;
