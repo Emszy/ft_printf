@@ -36,8 +36,6 @@ typedef struct s_types
  	int d; // "Handles int"
  	int D; //  "handles int"
  	int i; // "Handles int"
- 	int f; 	//contain decimal
-	int F; 	// contain decimal
  	int o; // "Unsigned Int in Octal"
  	int O; // Unsigned int in octal
  	int u; // "Print Decimal (Unsigned int)"
@@ -72,7 +70,13 @@ void		num_parse(va_list ap, t_flags flags, char *fmt);
 void		u_to_s(uintmax_t num, t_flags flags);
 uintmax_t 	promoting_u(va_list ap, t_flags flags, char *fmt);
 void		unum_parse(va_list ap, t_flags flags, char *fmt);
-
+void 		x_mod(t_flags flags, char *fmt, char *new);
+void		x_to_s(uintmax_t n, t_flags flags, char *fmt, int size);
+uintmax_t 	promoting_x(va_list ap, t_flags flags);
+void		xnum_parse(va_list ap, t_flags flags, char *fmt);
+void		o_to_s(uintmax_t num, t_flags flags);
+uintmax_t 	promoting_o(va_list ap, t_flags flags, char *fmt);
+void		onum_parse(va_list ap, t_flags flags, char *fmt);
 
 
 
