@@ -98,9 +98,9 @@ void		num_parse(va_list ap, t_flags flags, char *fmt)
 	before = (flags.plus_sign) ? '+' : 0;
 	before = (flags.space && (!flags.plus_sign)) ? ' ' : before;
 	before = ((number < 0) && (number *= -1)) ? '-' : before;
-	if (number == 0 && !flags.width && flags.precision && !flags.pre_amount)
+	if (number == 0 && !flags.width && flags.precision)
 		return ;
-	if (number == 0 && flags.precision && !flags.pre_amount)
+	if (number == 0 && flags.precision)
 		return (ft_putchar(' '));
 
 	num_to_s((uintmax_t)number, flags, before);
