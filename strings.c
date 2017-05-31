@@ -110,7 +110,7 @@ void		str_parse(va_list ap, t_flags flags, char c)
 		ws = va_arg(ap, wchar_t *);
 		l_str(ws, flags);
 	}
-	else if (c == 's')
+	if (c == 's')
 	{
 		s = va_arg(ap, char *);
 		make_string(s, flags);
