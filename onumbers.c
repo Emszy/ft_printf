@@ -30,7 +30,7 @@ void		o_to_s(uintmax_t num, t_flags flags)
 			n[len] = '0';
 		num /= 8;
 	}
-	if (flags.hash && flags.zero_spacer)
+	if (flags.hash)
 	{
 		ft_putstr("0");
 		flags.width -= 1;
