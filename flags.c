@@ -56,7 +56,7 @@ t_flags		first_flags(char *fmt, t_flags flags)
 		flags.hash = 1;
 	else if (*fmt == '0')
 	{
-		if (flags.neg == 0 || flags.plus_sign == 0)
+		if (flags.neg == 0)
 			flags.zero_spacer = 1;
 	}
 	return (flags);
