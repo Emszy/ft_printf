@@ -72,7 +72,14 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 			nbr[0] = before;
 	}
 	if (flags.precision < flags.width)
+	{
 		flags.width = flags.width - flags.precision;
+		while (flags.precision)
+		{
+			ft_putchar(' ');
+			flags.precision--;
+		}
+	}
 	number_print(nbr, flags);
 }
 
