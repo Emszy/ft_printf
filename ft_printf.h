@@ -64,7 +64,6 @@ void		limit_print(char *str, int len);
 void		make_string(char *s, t_flags flags);
 void		l_str(wchar_t *ws, t_flags flags);
 void		str_parse(va_list ap, t_flags flags, char c);
-char		*ft_remalloc(char *str, size_t size);
 int			get_size(uintmax_t num, int base);
 void		number_print(char *str, t_flags flags);
 void		num_to_s(uintmax_t number, t_flags flags, char before);

@@ -81,10 +81,7 @@ void	l_str(wchar_t *ws, t_flags flags)
 	{
 		total += ft_strlen(str = wide_to_s(*ws++));
 		if (total <= len)
-		{
-			new = ft_remalloc(new, ft_strlen(new) + ft_strlen(str));
-			new = ft_strncat(new, str, ft_strlen(str));
-		}
+			new = ft_strjoin(new, str); // remalloc if segfault
 	}
 	make_string(new, flags);
 	ft_strdel(&new);

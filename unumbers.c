@@ -18,6 +18,7 @@ void	u_to_s(uintmax_t num, t_flags flags)
 			n[size] = '0';
 		num /= 10;
 	}
+
 	number_print(n, flags);
 }
 
@@ -51,11 +52,13 @@ void	unum_parse(va_list ap, t_flags flags, char *fmt)
 	{
 		prepend_width(flags, flags.width);
 		ft_putchar('0');
+		return ;
 	}
 	if (flags.precision && res == 0)
 	{
 		prepend_width(flags, flags.width);
 		ft_putchar(' ');
+		return ;
 	}
 	if (!flags.width && flags.precision && res == 0)
 		return ;
