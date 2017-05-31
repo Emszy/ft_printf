@@ -73,11 +73,12 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 	}
 	if (flags.precision < flags.width && flags.precision != 0)
 	{
+		int x = 0;
 		flags.width = flags.width - flags.precision;
-		while (flags.precision)
+		while (x < flags.width)
 		{
 			ft_putchar(' ');
-			flags.precision--;
+			x++;
 		}
 	}
 	number_print(nbr, flags);
