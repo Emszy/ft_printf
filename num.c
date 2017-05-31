@@ -22,7 +22,7 @@ int			get_size(uintmax_t num, int base)
 	return (len);
 }
 
-void	spaces(int n, t_flags *flags, int c)
+void	spaces(int n, t_flags flags, int c)
 {
 	int i;
 
@@ -46,17 +46,17 @@ void	number_print2(char *str, t_flags flags)
 	int size;
 
 	size = ft_strlen(str);
-	if (flags->neg)
+	if (flags.neg)
 	{
 		ft_putstr(str);
-		spaces(flags->width - size, flags, 0);
+		spaces(flags.width - size, flags, 0);
 	}
 	else
 	{
-		if (flags->zero_spacer)
-			spaces(flags->width - size, flags, 1);
+		if (flags.zero_spacer)
+			spaces(flags.width - size, flags, 1);
 		else
-			spaces(flags->width - size, flags, 0);
+			spaces(flags.width - size, flags, 0);
 		ft_putstr(str);
 	}
 	ft_strdel(&str);
