@@ -96,7 +96,7 @@ void		num_parse(va_list ap, t_flags flags, char *fmt)
 
 	before = 0;
 	number = promo_check(ap, flags, fmt);
-	if (flags.plus_sign > 0)
+	if (flags.plus_sign != 0)
 		before = '+';
 	if (flags.space && !flags.plus_sign)
 		before = ' ';
