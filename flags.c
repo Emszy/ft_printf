@@ -58,7 +58,7 @@ void		check_flags(char *fmt, t_flags flags, va_list ap)
 		else if (*fmt == '#')
 			flags.hash = 1;
 		else if (*fmt == '0')
-			flags.zero = 1;
+			flags.zero_spacer = 1;
 		else if (ft_isdigit(*fmt) || *fmt == '*')
 			set_width(&fmt, flags, ap);
 		if (*fmt == '.')
