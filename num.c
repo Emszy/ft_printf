@@ -41,7 +41,7 @@ void	spaces(int n, t_flags *flags, int c)
 	}
 }
 
-void	number_print(char *str, t_flags *flags)
+void	number_print2(char *str, t_flags *flags)
 {
 	int size;
 
@@ -62,22 +62,22 @@ void	number_print(char *str, t_flags *flags)
 	ft_strdel(&str);
 }
 
-// void		number_print(char *str, t_flags flags)
-// {
-// 	int len;
+void		number_print(char *str, t_flags flags)
+{
+	int len;
 
-// 	len = ft_strlen(str);
-// 	if (flags.neg)
-// 	{
-// 		ft_putstr(str);
-// 		prepend_width(flags, flags.width - len);
-// 	}
-// 	else
-// 	{
-// 		prepend_width(flags, flags.width - len);
-// 		ft_putstr(str);
-// 	}
-// }
+	len = ft_strlen(str);
+	if (flags.neg)
+	{
+		ft_putstr(str);
+		prepend_width(flags, flags.width - len);
+	}
+	else
+	{
+		prepend_width(flags, flags.width - len);
+		ft_putstr(str);
+	}
+}
 
 void		num_to_s(uintmax_t number, t_flags flags, char before)
 {
@@ -105,7 +105,7 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 		ft_putchar(before);
 	if (before != 0)
 		nbr[0] = before;
-	number_print(nbr, flags);
+	number_print2(nbr, flags);
 }
 
 intmax_t	promo_check(va_list ap, t_flags flags, char *fmt)
