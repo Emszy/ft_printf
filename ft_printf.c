@@ -86,3 +86,9 @@ int			ft_printf(char *fmt, ...)
 	va_end(ap);
 	return (0);
 }
+
+int main(void)
+{
+	ft_printf("%      i", 42);
+	return 0;
+}
