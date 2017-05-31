@@ -69,6 +69,7 @@ int			setup(char *fmt, va_list ap)
 					|| *fmt == 'j') && *fmt)
 				fmt++;
 			check_spec(fmt, flags, ap);
+			printf("%s\n", );
 		}
 		else
 			ft_putchar(*fmt);
@@ -85,4 +86,10 @@ int			ft_printf(char *fmt, ...)
 	setup(fmt, ap);
 	va_end(ap);
 	return (0);
+}
+
+int main(void)
+{
+	ft_printf("%+04d", 42);
+	return 0;
 }
