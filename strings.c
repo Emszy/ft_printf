@@ -104,17 +104,21 @@ void		str_parse(va_list ap, t_flags flags, char c)
 	char	*s;
 	wchar_t	*ws;
 
-	s = 0;
-	if (c == 'S' || (flags.l && c == 's'))
+	s = '\0';
+	if (c == 'S' || (flags->l_mod && c == 's'))
 	{
 		ws = va_arg(ap, wchar_t *);
-		l_str(ws, flags);
-	}
-	if (c == 's')
-	{
-		s = va_arg(ap, char *);
-		make_string(s, flags);
+		if (ws)
+			long_string(ws, flags);
+		else
+			make_string("(null)", flags);
 	}
 	else
-		make_string("(null)", flags);
+	{
+		s = va_arg(ap, char *);
+		if (s)
+			make_string(s, flags);
+		else
+			make_string("(null)", flags);
+	}
 }
