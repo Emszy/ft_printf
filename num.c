@@ -22,22 +22,62 @@ int			get_size(uintmax_t num, int base)
 	return (len);
 }
 
-void		number_print(char *str, t_flags flags)
+void	spaces(int n, t_flags *flags, int c)
 {
-	int len;
+	int i;
 
-	len = ft_strlen(str);
-	if (flags.neg)
+	i = 0;
+	if (c)
+		c = '0';
+	else
+		c = ' ';
+	if (n > 0)
+	{
+		while (i < n)
+		{
+			ft_putchar(c);
+			i++;
+		}
+	}
+}
+
+void	number_print(char *str, t_flags *flags)
+{
+	int size;
+
+	size = ft_strlen(str);
+	if (flags->neg)
 	{
 		ft_putstr(str);
-		prepend_width(flags, flags.width - len);
+		spaces(flags->width - size, flags, 0);
 	}
 	else
 	{
-		prepend_width(flags, flags.width - len);
+		if (flags->zero)
+			spaces(flags->width - size, flags, 1);
+		else
+			spaces(flags->width - size, flags, 0);
 		ft_putstr(str);
 	}
+	ft_strdel(&str);
 }
+
+// void		number_print(char *str, t_flags flags)
+// {
+// 	int len;
+
+// 	len = ft_strlen(str);
+// 	if (flags.neg)
+// 	{
+// 		ft_putstr(str);
+// 		prepend_width(flags, flags.width - len);
+// 	}
+// 	else
+// 	{
+// 		prepend_width(flags, flags.width - len);
+// 		ft_putstr(str);
+// 	}
+// }
 
 void		num_to_s(uintmax_t number, t_flags flags, char before)
 {
