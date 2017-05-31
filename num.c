@@ -34,6 +34,11 @@ void		number_print(char *str, t_flags flags)
 	}
 	else
 	{
+		if(flags.plus_sign == 1)
+		{
+			ft_putchar("+");
+			flags.width--;
+		}
 		prepend_width(flags, flags.width - len);
 		ft_putstr(str);
 	}
