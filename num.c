@@ -47,7 +47,7 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 	len = get_size(number, 10);
 	if (flags.precision >= len)
 		len = flags.precision;
-	if (flags.precision > flags.width && flags.zero_spacer == 0)
+	if (flags.precision > flags.width && flags.zero_spacer)
 		ft_putchar(' ');
 	if (before != 0 && !flags.zero_spacer)
 		len++;
