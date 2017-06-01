@@ -30,7 +30,7 @@ void		u_to_s(uintmax_t num, t_flags flags)
 			n[size] = '0';
 		num /= 10;
 	}
-	number_print(n, flags);
+	print_num(n, flags);
 }
 
 uintmax_t	promoting_u(va_list ap, t_flags flags, char *fmt)

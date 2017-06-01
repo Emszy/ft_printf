@@ -22,7 +22,7 @@ int			get_size(uintmax_t num, int base)
 	return (len);
 }
 
-void		number_print(char *str, t_flags flags)
+void		print_num(char *str, t_flags flags)
 {
 	int len;
 
@@ -62,7 +62,7 @@ void		o_to_s(uintmax_t num, t_flags flags)
 		ft_putstr("0");
 		flags.width -= 1;
 	}
-	number_print(n, flags);
+	print_num(n, flags);
 }
 
 uintmax_t	promoting_o(va_list ap, t_flags flags, char *fmt)

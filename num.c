@@ -68,7 +68,7 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 	else if (before != 0)
 		nbr[0] = before;
 	flags = edge_case(flags);
-	number_print(nbr, flags);
+	print_num(nbr, flags);
 }
 
 intmax_t	promo_check(va_list ap, t_flags flags, char *fmt)

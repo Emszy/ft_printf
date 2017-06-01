@@ -38,7 +38,7 @@ void		x_mod(t_flags flags, char *fmt, char *new)
 			ft_putstr("0X");
 		flags.width -= 2;
 	}
-	number_print(new, flags);
+	print_num(new, flags);
 }
 
 void		x_to_s(uintmax_t n, t_flags flags, char *fmt, int size)

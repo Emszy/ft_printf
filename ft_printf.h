@@ -51,7 +51,7 @@ void				make_string(char *s, t_flags flags);
 void				l_str(wchar_t *ws, t_flags flags);
 void				str_parse(va_list ap, t_flags flags, char c);
 int					get_size(uintmax_t num, int base);
-void				number_print(char *str, t_flags flags);
+void				print_num(char *str, t_flags flags);
 void				num_to_s(uintmax_t number, t_flags flags, char before);
 intmax_t			promo_check(va_list ap, t_flags flags, char *fmt);
 void				num_parse(va_list ap, t_flags flags, char *fmt);
