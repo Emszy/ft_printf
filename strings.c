@@ -88,7 +88,7 @@ void		l_str(wchar_t *ws, t_flags flags)
 	if (flags.precision > 0)
 		len = flags.precision;
 	else
-		len = 2147483647;
+		len = MAX_INT;
 	while (ws != NULL && *ws && (total <= len))
 	{
 		total += ft_strlen(str = wide_to_s(*ws++));
