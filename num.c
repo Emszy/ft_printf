@@ -54,14 +54,12 @@ t_flags edge_case(t_flags flags)
 				x++;
 			}
 		}
-		return (flags);
+	return (flags);
 }
 
-void		num_to_s(uintmax_t number, t_flags flags, char before)
+int char_len(uintmax_t number, t_flags flags, char before)
 {
 	int		len;
-	char	*nbr;
-
 	len = get_size(number, 10);
 	if (flags.precision >= len)
 		len = flags.precision;
@@ -69,6 +67,16 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 		len++;
 	else if (before == '-' && flags.zero_spacer && !flags.neg)
 		len++;
+	return (len);
+}
+
+void		num_to_s(uintmax_t number, t_flags flags, char before)
+{
+
+	char	*nbr;
+	int		len;
+
+	len = char_len(number, flags, before);
 	nbr = ft_strnew(len);
 	nbr[len] = '\0';
 	while (--len >= 0)
