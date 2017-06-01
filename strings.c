@@ -101,20 +101,24 @@ void		l_str(wchar_t *ws, t_flags flags)
 
 void		str_parse(va_list ap, t_flags flags, char c)
 {
-	char	*s;
-	wchar_t	*ws;
+	char	*str;
+	wchar_t	*wide;
 
-	s = 0;
+	str = '\0';
 	if (c == 'S' || (flags.l && c == 's'))
 	{
-		ws = va_arg(ap, wchar_t *);
-		l_str(ws, flags);
-	}
-	else if (c == 's')
-	{
-		s = va_arg(ap, char *);
-		make_string(s, flags);
+		wide = va_arg(ap, wchar_t *);
+		if (wide)
+			l_str(wide, flags);
+		else
+			make_string("(null)", flags);
 	}
 	else
-		make_string("(null)", flags);
+	{
+		str = va_arg(ap, char *);
+		if (str)
+			make_string(str, flags);
+		else
+			make_string("(null)", flags);
+	}
 }
