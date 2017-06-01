@@ -12,27 +12,28 @@
 
 #include "ft_printf.h"
 
-t_flags edge_case(t_flags flags)
+t_flags		edge_case(t_flags flags)
 {
 	int x;
 
 	x = 0;
 	if (flags.precision < flags.width && flags.precision != 0)
+	{
+		x = 0;
+		flags.width = flags.width - flags.precision;
+		while (x < flags.width)
 		{
-			int x = 0;
-			flags.width = flags.width - flags.precision;
-			while (x < flags.width)
-			{
-				ft_putchar(' ');
-				x++;
-			}
+			ft_putchar(' ');
+			x++;
 		}
+	}
 	return (flags);
 }
 
-int char_len(uintmax_t number, t_flags flags, char before)
+int			char_len(uintmax_t number, t_flags flags, char before)
 {
 	int		len;
+
 	len = get_size(number, 10);
 	if (flags.precision >= len)
 		len = flags.precision;
@@ -45,7 +46,6 @@ int char_len(uintmax_t number, t_flags flags, char before)
 
 void		num_to_s(uintmax_t number, t_flags flags, char before)
 {
-
 	char	*nbr;
 	int		len;
 
@@ -60,16 +60,13 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 			nbr[len] = '0';
 		number /= 10;
 	}
-	if (before != 0)
-	{
 		if (before == '+' && flags.zero_spacer)
 		{
 			ft_putchar(before);
 			flags.width--;
 		}
-		else
+		else if (before != 0)
 			nbr[0] = before;
-	}
 	flags = edge_case(flags);
 	number_print(nbr, flags);
 }
