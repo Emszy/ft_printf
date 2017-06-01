@@ -60,13 +60,13 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 			nbr[len] = '0';
 		number /= 10;
 	}
-		if (before == '+' && flags.zero_spacer)
-		{
-			ft_putchar(before);
-			flags.width--;
-		}
-		else if (before != 0)
-			nbr[0] = before;
+	if (before == '+' && flags.zero_spacer)
+	{
+		ft_putchar(before);
+		flags.width--;
+	}
+	else if (before != 0)
+		nbr[0] = before;
 	flags = edge_case(flags);
 	number_print(nbr, flags);
 }

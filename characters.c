@@ -37,11 +37,14 @@ void	print_char(va_list ap, t_flags flags)
 
 void	chars(va_list ap, t_flags flags, char specifier)
 {
+	char *ws;
+
 	if (specifier == 'c' && flags.l == 0)
 		print_char(ap, flags);
 	else
 	{
 		prepend_width(flags, flags.width);
-		ft_putstr(wide_to_s(va_arg(ap, wint_t)));
+		ws = wide_to_s(va_arg(ap, wint_t));
+		ft_putstr(ws);
 	}
 }
