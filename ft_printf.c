@@ -30,6 +30,16 @@ t_flags		init_flags(t_flags flags)
 	return (flags);
 }
 
+int			get_size(uintmax_t num, int base)
+{
+	int len;
+
+	len = 1;
+	while (num /= base)
+		len++;
+	return (len);
+}
+
 void		check_spec(char *fmt, t_flags flags, va_list ap)
 {
 	if (*fmt == '%')

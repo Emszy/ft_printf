@@ -12,16 +12,6 @@
 
 #include "ft_printf.h"
 
-int			get_size(uintmax_t num, int base)
-{
-	int len;
-
-	len = 1;
-	while (num /= base)
-		len++;
-	return (len);
-}
-
 void		number_print(char *str, t_flags flags)
 {
 	int len;
@@ -37,6 +27,34 @@ void		number_print(char *str, t_flags flags)
 		prepend_width(flags, flags.width - len);
 		ft_putstr(str);
 	}
+}
+
+char		*num_edge(char before, char *nbr, t_flags flags)
+{
+	int x;
+
+	x = 0;
+	if (before != 0)
+	{
+		if (before == '+' && flags.zero_spacer)
+		{
+			ft_putchar(before);
+			flags.width--;
+		}
+		else
+			nbr[0] = before;
+	}
+	if (flags.precision < flags.width && flags.precision != 0)
+	{
+		x = 0;
+		flags.width = flags.width - flags.precision;
+		while (x < flags.width)
+		{
+			ft_putchar(' ');
+			x++;
+		}
+	}
+	return (nbr);
 }
 
 void		num_to_s(uintmax_t number, t_flags flags, char before)
@@ -61,26 +79,7 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 			nbr[len] = '0';
 		number /= 10;
 	}
-	if (before != 0)
-	{
-		if (before == '+' && flags.zero_spacer)
-		{
-			ft_putchar(before);
-			flags.width--;
-		}
-		else
-			nbr[0] = before;
-	}
-	if (flags.precision < flags.width && flags.precision != 0)
-	{
-		int x = 0;
-		flags.width = flags.width - flags.precision;
-		while (x < flags.width)
-		{
-			ft_putchar(' ');
-			x++;
-		}
-	}
+	nbr = num_edge(before, nbr, flags);
 	number_print(nbr, flags);
 }
 

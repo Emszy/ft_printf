@@ -72,7 +72,8 @@ t_flags		check_flags(char *fmt, t_flags flags, va_list ap)
 	{
 		if (pass_flags == 0)
 			flags = first_flags(fmt, flags);
-		if ((ft_isdigit(*fmt) || *fmt == '*') && flags.width == 0 && *fmt != '0')
+		if ((ft_isdigit(*fmt) || *fmt == '*') &&
+			flags.width == 0 && *fmt != '0')
 		{
 			flags = check_wid(fmt, flags, ap);
 			pass_flags = 1;
