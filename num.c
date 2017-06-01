@@ -39,6 +39,24 @@ void		number_print(char *str, t_flags flags)
 	}
 }
 
+t_flags edge_case(t_flags flags)
+{
+	int x;
+
+	x = 0;
+	if (flags.precision < flags.width && flags.precision != 0)
+		{
+			int x = 0;
+			flags.width = flags.width - flags.precision;
+			while (x < flags.width)
+			{
+				ft_putchar(' ');
+				x++;
+			}
+		}
+		return (flags);
+}
+
 void		num_to_s(uintmax_t number, t_flags flags, char before)
 {
 	int		len;
@@ -71,16 +89,7 @@ void		num_to_s(uintmax_t number, t_flags flags, char before)
 		else
 			nbr[0] = before;
 	}
-	if (flags.precision < flags.width && flags.precision != 0)
-	{
-		int x = 0;
-		flags.width = flags.width - flags.precision;
-		while (x < flags.width)
-		{
-			ft_putchar(' ');
-			x++;
-		}
-	}
+	flags = edge_case(flags);
 	number_print(nbr, flags);
 }
 
