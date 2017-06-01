@@ -12,6 +12,33 @@
 
 #include "ft_printf.h"
 
+int			get_size(uintmax_t num, int base)
+{
+	int len;
+
+	len = 1;
+	while (num /= base)
+		len++;
+	return (len);
+}
+
+void		number_print(char *str, t_flags flags)
+{
+	int len;
+
+	len = ft_strlen(str);
+	if (flags.neg)
+	{
+		ft_putstr(str);
+		prepend_width(flags, flags.width - len);
+	}
+	else
+	{
+		prepend_width(flags, flags.width - len);
+		ft_putstr(str);
+	}
+}
+
 void		o_to_s(uintmax_t num, t_flags flags)
 {
 	int		len;
