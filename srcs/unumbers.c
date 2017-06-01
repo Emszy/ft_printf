@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xnumbers.c                                         :+:      :+:    :+:   */
+/*   unumbers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,99 +10,68 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-void		x_mod(t_flags flags, char *fmt, char *new)
+void		u_to_s(uintmax_t num, t_flags flags)
 {
-	int size;
+	int		size;
+	char	*n;
 
-	size = 0;
-	if (flags.hash && !flags.zero_spacer)
-	{
-		new[1] = 'x';
-		new[0] = '0';
-	}
-	if (*fmt == 'X')
-	{
-		while (new[size])
-		{
-			new[size] = ft_toupper(new[size]);
-			size++;
-		}
-	}
-	if (flags.hash && flags.zero_spacer)
-	{
-		if (*fmt == 'x')
-			ft_putstr("0x");
-		else if (*fmt == 'X')
-			ft_putstr("0X");
-		flags.width -= 2;
-	}
-	print_num(new, flags);
-}
-
-void		x_to_s(uintmax_t n, t_flags flags, char *fmt, int size)
-{
-	char	*new;
-
-	size = get_size(n, 16);
-	if (n == 0)
-		flags.hash = 0;
+	size = get_size(num, 10);
 	if (flags.precision > size)
 		size = flags.precision;
-	if (flags.hash && !flags.zero_spacer)
-		size += 2;
-	new = ft_strnew(size);
-	new[size] = '\0';
+	n = ft_strnew(size);
+	n[size] = '\0';
 	while (--size >= 0)
 	{
-		if (n != 0)
-		{
-			if ((n % 16) > 9)
-				new[size] = (n % 16) - 10 + 'a';
-			else
-				new[size] = (n % 16) + '0';
-		}
+		if (num != 0)
+			n[size] = num % 10 + '0';
 		else
-			new[size] = '0';
-		n /= 16;
+			n[size] = '0';
+		num /= 10;
 	}
-	x_mod(flags, fmt, new);
+	print_num(n, flags);
 }
 
-uintmax_t	promoting_x(va_list ap, t_flags flags)
+uintmax_t	promoting_u(va_list ap, t_flags flags, char *fmt)
 {
 	uintmax_t	res;
 
-	if (flags.hh)
+	if (*fmt == 'u' && flags.hh)
 		res = (unsigned char)va_arg(ap, int);
-	else if (flags.h)
+	else if (*fmt == 'u' && flags.h)
 		res = (unsigned short)va_arg(ap, int);
-	else if (flags.l)
+	else if ((*fmt == 'u' && flags.l) || *fmt == 'U')
 		res = va_arg(ap, unsigned long);
-	else if (flags.ll)
+	else if (*fmt == 'u' && flags.ll)
 		res = va_arg(ap, unsigned long long);
-	else if (flags.j)
+	else if (*fmt == 'u' && flags.j)
 		res = va_arg(ap, uintmax_t);
-	else if (flags.z)
+	else if (*fmt == 'u' && flags.z)
 		res = va_arg(ap, ssize_t);
 	else
 		res = va_arg(ap, unsigned int);
 	return (res);
 }
 
-void		xnum_parse(va_list ap, t_flags flags, char *fmt)
+void		unum_parse(va_list ap, t_flags flags, char *fmt)
 {
 	uintmax_t	res;
 
-	res = promoting_x(ap, flags);
-	if (res == 0 && !flags.width && flags.precision)
+	res = promoting_u(ap, flags, fmt);
+	if (flags.hash && res == 0)
+	{
+		prepend_width(flags, flags.width);
+		ft_putchar('0');
 		return ;
-	if (res == 0 && flags.precision)
+	}
+	if (flags.precision && res == 0)
 	{
 		prepend_width(flags, flags.width);
 		ft_putchar(' ');
 		return ;
 	}
-	x_to_s(res, flags, fmt, 0);
+	if (!flags.width && flags.precision && res == 0)
+		return ;
+	u_to_s(res, flags);
 }

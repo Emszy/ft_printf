@@ -2,17 +2,25 @@ NAME = libftprintf.a
 
 CFLAG = -c -Wall -Werror -Wextra
 
-SRCS = 		ft_printf.c \
-		flags.c \
-		characters.c \
-		strings.c \
-		num.c \
-		unumbers.c \
-		xnumbers.c \
-		onumbers.c \
-		pointers.c
+SRCS = 		srcs/ft_printf.c \
+			srcs/flags.c \
+			srcs/characters.c \
+			srcs/strings.c \
+			srcs/num.c \
+			srcs/unumbers.c \
+			srcs/xnumbers.c \
+			srcs/onumbers.c \
+			srcs/pointers.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS = 		ft_printf.o \
+			flags.o \
+			characters.o \
+			strings.o \
+			num.o \
+			unumbers.o \
+			xnumbers.o \
+			onumbers.o \
+			pointers.o
 
 LIB_OBJS = 	libft/ft_putchar.o \
 		libft/ft_putstr.o \

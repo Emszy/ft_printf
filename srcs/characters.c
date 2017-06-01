@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pointers.c                                         :+:      :+:    :+:   */
+/*   characters.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebucheit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,47 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-char		*cp_pointer(long n, int len)
+void	prepend_width(t_flags flags, int width)
 {
-	char	*new;
+	int		x;
+	char	spaces;
 
-	new = ft_strnew(len);
-	new[len] = '\0';
-	while (--len >= 0)
-	{
-		if (n != 0)
-		{
-			if ((n % 16) > 9)
-				new[len] = (n % 16) - 10 + 'a';
-			else
-				new[len] = (n % 16) + '0';
-		}
-		else
-			new[len] = '0';
-		n /= 16;
-	}
-	new[1] = 'x';
-	new[0] = '0';
-	return (new);
+	x = -1;
+	if (flags.zero_spacer == 1)
+		spaces = '0';
+	else
+		spaces = ' ';
+	while (++x < width)
+		ft_putchar(spaces);
 }
 
-void		p_to_s(void *pointer, t_flags flags)
+void	chars(va_list ap, t_flags flags, char specifier)
 {
-	long	n;
-	int		len;
-	char	*new;
+	char *ws;
+	char c;
 
-	n = (long)pointer;
-	if (n == 0 && flags.precision)
+	if (specifier == 'c' && flags.l == 0)
 	{
-		print_num("0x", flags);
-		return ;
+		c = va_arg(ap, int);
+		prepend_width(flags, flags.width);
+		ft_putchar(c);
 	}
-	len = get_size(n, 16) + 2;
-	if (flags.precision > len - 2)
-		len = flags.precision + 2;
-	new = cp_pointer(n, len);
-	print_num(new, flags);
+	else
+	{
+		prepend_width(flags, flags.width);
+		ws = wide_to_s(va_arg(ap, wint_t));
+		ft_putstr(ws);
+	}
 }
